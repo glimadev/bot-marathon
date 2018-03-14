@@ -1,13 +1,38 @@
 ﻿<html>
 <body>
     <style>
-        img {
+        img.maratona {
             display: block;
-            margin-top:200px;
+            margin-top: 200px;
             margin-left: auto;
             margin-right: auto
         }
+
+        div.channels {
+            margin-right: auto;
+            margin-left: auto;
+            display: block;
+            width: fit-content;
+            margin-top: 50px;
+        }
+
+        img.embed-channel-icon {
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            margin:10px;
+        }
     </style>
-    <img src="Assets/marathon.png" />
+    <div>
+        <img class="maratona" src="Assets/marathon.png" />
+    </div>
+    <div class="channels">
+        <a target="_blank" href='https://join.skype.com/bot/7dde5cb6-02ef-440a-a677-895d2d43d4d5'>
+            <img class="embed-channel-icon" alt="Skype" src="https://dev.botframework.com/client/images/channels/icons/skype.png">
+        </a>
+        <a target="_blank" href='https://telegram.me/maratona_bot'>
+            <img class="embed-channel-icon" alt="Telegram" src="https://telegram.botframework.com/icon.png">
+        </a>
+    </div>
 </body>
 </html>
