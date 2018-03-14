@@ -1,5 +1,8 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -42,6 +45,31 @@ namespace bot_marathon
                 // Handle conversation state changes, like members being added and removed
                 // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                 // Not available in all channels
+                IConversationUpdateActivity update = message;
+
+                var client = new ConnectorClient(new Uri(message.ServiceUrl), new MicrosoftAppCredentials());
+
+                if (update.MembersAdded != null && update.MembersAdded.Any(x => x.Name != "Bot"))
+                {
+                    ConnectorClient connector = new ConnectorClient(new Uri(message.ServiceUrl));
+
+                    Activity reply = message.CreateReply("🚘");
+
+                    reply.Type = ActivityTypes.Message;
+
+                    reply.TextFormat = TextFormatTypes.Plain;
+
+                    reply.SuggestedActions = new SuggestedActions()
+                    {
+                        Actions = new List<CardAction>()
+                        {
+                            new CardAction(){ Title = "Começar", Type=ActionTypes.ImBack, Value="Começar" }
+                        }
+                    };
+
+                    connector.Conversations.ReplyToActivityAsync(reply);
+                }
+
             }
             else if (message.Type == ActivityTypes.ContactRelationUpdate)
             {
