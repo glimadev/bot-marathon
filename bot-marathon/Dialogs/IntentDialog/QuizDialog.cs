@@ -1,6 +1,7 @@
 ﻿using bot_marathon.Dialogs.EnumDialog;
 using bot_marathon.Helpers;
 using bot_marathon.Models;
+using bot_marathon.Repository;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;
@@ -31,6 +32,10 @@ namespace bot_marathon.Dialogs.IntentDialog
                 {
                     activity = context.Activity as Activity;
                 }
+
+                _db.MessageRepository = new MessageRepository();
+
+                await _db.MessageRepository.SaveMessage(activity);
 
                 if (_db.ConversationSituation == (int)QuizEnum.Init)
                 {
@@ -81,7 +86,7 @@ namespace bot_marathon.Dialogs.IntentDialog
                     await ConversationConclusao(activity, context);
                 }
             }
-            catch (TooManyAttemptsException ex)
+            catch (Exception ex)
             {
                 context.Done(new ResultDialog { Activity = context.Activity as Activity });
             }

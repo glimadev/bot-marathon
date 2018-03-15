@@ -1,5 +1,4 @@
-﻿using bot_marathon.Dialogs;
-using bot_marathon.Dialogs.IntentFactories;
+﻿using bot_marathon.Dialogs.IntentFactories;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;

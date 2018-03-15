@@ -1,6 +1,8 @@
-﻿namespace bot_marathon.Models
+﻿using bot_marathon.Dialogs.DbDialog;
+
+namespace bot_marathon.Models
 {
-    public class DbInitDialog
+    public class DbInitDialog : DbBaseDialog
     {
         public DbInitDialog()
         {

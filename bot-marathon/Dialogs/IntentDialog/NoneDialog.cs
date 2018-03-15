@@ -22,7 +22,7 @@ namespace bot_marathon.Dialogs.IntentDialog
 
             await context.DontUnderstandMessage();
 
-            context.Done(new ResultDialog { Activity = activity });
+            context.Done(new ResultDialog { Activity = activity, Wait = true });
         }
     }
 }
